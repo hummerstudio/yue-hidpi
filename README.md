@@ -1,5 +1,7 @@
 # 悦高清 · yue-hidpi
 
+[![CI](https://github.com/hummerstudio/yue-hidpi/actions/workflows/ci.yml/badge.svg)](https://github.com/hummerstudio/yue-hidpi/actions/workflows/ci.yml)
+
 让 Mac 用上 HiDPI 缩放的一条命令。macOS 只在"视网膜屏"上默认开放 HiDPI，外接显示器插上来往往只有原始分辨率，字细、图标糊。这个工具把社区脚本里那套手工流程做成一个可审计、可回滚的命令行程序。
 
 ```
@@ -59,7 +61,7 @@ macOS 的 HiDPI 由三件事共同决定，缺一不可：
 要求 macOS 11+，以及 Xcode 或 Command Line Tools（`xcode-select --install`）。
 
 ```bash
-git clone https://gitcode.com/yuetool/yue-hidpi.git
+git clone https://github.com/hummerstudio/yue-hidpi.git
 cd yue-hidpi
 make build                 # 本机架构
 # 或 make universal        # arm64 + x86_64 一个文件，适合分发
@@ -74,6 +76,8 @@ sudo make install          # → /usr/local/bin/yue-hidpi
 - 发布到 GitHub Releases 的二进制应当是 universal，README 顶部下载链接也指向它。
 
 没有 Homebrew formula：这个工具会改显示配置，作者倾向于让用户看着源码装。欢迎补 formula。
+
+> 主仓在 GitHub；GitCode `yuetool/yue-hidpi`（悦兔AI 组）是同步镜像。
 
 ## 用法
 
