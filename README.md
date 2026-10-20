@@ -15,6 +15,14 @@ $ yue-hidpi list
 ```
 $ sudo yue-hidpi enable            # 安装档位 + 打开总开关，然后注销
 $ yue-hidpi set 1600x900           # 登录后切到想要的缩放
+$ yue-hidpi status                 # 随时查看：装了没、生效没
+全局开关
+  DisplayResolutionEnabled = 已开启
+  覆盖目录: /Library/Displays/Contents/Resources/Overrides
+  清单文件: /Library/Application Support/yue-hidpi/manifest.json
+
+  #  显示器                   覆盖文件  档位数  当前 HiDPI
+  0  Built-in Retina Display  已安装    4       ✔
 ```
 
 - **不关 SIP，不 patch 系统文件，不调私有 API**：只写 Apple 自己使用的两个公开位置，并全程留清单。
@@ -51,7 +59,7 @@ macOS 的 HiDPI 由三件事共同决定，缺一不可：
 要求 macOS 11+，以及 Xcode 或 Command Line Tools（`xcode-select --install`）。
 
 ```bash
-git clone https://github.com/hummerstudio/yue-hidpi.git
+git clone https://gitcode.com/yuetool/yue-hidpi.git
 cd yue-hidpi
 make build                 # 本机架构
 # 或 make universal        # arm64 + x86_64 一个文件，适合分发

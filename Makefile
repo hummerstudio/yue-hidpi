@@ -25,13 +25,16 @@ selftest: build
 ## Note: `swift build --arch arm64 --arch x86_64` needs a full Xcode
 ## (it shells out to xcbuild). Cross-compiling per triple works with
 ## Command Line Tools alone, which is what this target uses.
+## Separate --scratch-path keeps .build/release (native) untouched, so a
+## universal build never leaves you with an arm64-only .build/release on
+## an Intel machine ("Bad CPU type in executable").
 universal:
-	swift build -c release --triple arm64-apple-macosx11.0
-	swift build -c release --triple x86_64-apple-macosx11.0
+	swift build -c release --triple arm64-apple-macosx11.0  --scratch-path .build/arm64
+	swift build -c release --triple x86_64-apple-macosx11.0 --scratch-path .build/x86
 	mkdir -p .build/universal
 	lipo -create -output $(UNIVERSAL) \
-		.build/arm64-apple-macosx/release/$(APP) \
-		.build/x86_64-apple-macosx/release/$(APP)
+		.build/arm64/arm64-apple-macosx/release/$(APP) \
+		.build/x86/x86_64-apple-macosx/release/$(APP)
 	lipo -info $(UNIVERSAL)
 	@echo "→ $(UNIVERSAL)"
 
