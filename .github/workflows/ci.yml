@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: swift --version
+
+      - name: Build
+        run: swift build -c release
+
+      - name: Self test (no Xcode needed)
+        run: .build/release/yue-hidpi selftest
+
+      - name: XCTest
+        run: swift test
+
+      - name: Enumerate displays
+        run: .build/release/yue-hidpi list
+
+      - name: Doctor (informational on CI runners)
+        run: .build/release/yue-hidpi doctor || true
+
+      - name: Universal binary
+        run: make universal
