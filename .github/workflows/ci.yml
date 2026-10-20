@@ -9,7 +9,7 @@ jobs:
   build-and-test:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Toolchain
         run: swift --version
@@ -31,3 +31,10 @@ jobs:
 
       - name: Universal binary
         run: make universal
+
+      - name: Upload universal binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: yue-hidpi-universal
+          path: .build/universal/yue-hidpi
+          if-no-files-found: error

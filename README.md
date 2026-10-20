@@ -68,6 +68,15 @@ make build                 # 本机架构
 sudo make install          # → /usr/local/bin/yue-hidpi
 ```
 
+不想编译：直接取 [Releases](https://github.com/hummerstudio/yue-hidpi/releases) 里的 universal 二进制（arm64 + x86_64，macOS 11+ 直接跑，不需要装 Swift 运行时）。
+
+```bash
+curl -fsSL -o /usr/local/bin/yue-hidpi \
+  https://github.com/hummerstudio/yue-hidpi/releases/latest/download/yue-hidpi
+chmod +x /usr/local/bin/yue-hidpi
+yue-hidpi list
+```
+
 **关于架构与 Swift 运行时**
 
 - Swift 运行时自 macOS 10.14.4 起就是系统的一部分（`/usr/lib/swift/*` 由 dyld 共享缓存提供，不是磁盘上的实体文件）。`otool -L` 显示的 `/usr/lib/swift/libswiftCore.dylib` 由系统解析，**用户不需要安装任何运行时**。
